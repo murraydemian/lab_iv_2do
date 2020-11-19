@@ -1,0 +1,8 @@
+<mat-card 
+class="listado">
+    <app-item-listado
+    *ngFor="let item of items"
+    [data]="item"
+    (onSelect)="selecciona($event)">
+    </app-item-listado>
+</mat-card>

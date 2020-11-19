@@ -1,0 +1,41 @@
+<mat-card class="login-form">
+
+    <mat-label>
+        Inicio de sesión
+    </mat-label>
+
+    <app-form-input
+        [valor]="correo"
+        label="Correo"
+        placeholder="Correo"
+        tipo="email"
+        icono="mail"
+        [hint]="hintCorreo"
+        (cambiaValor)="correo = $event">
+    </app-form-input>
+
+    <app-form-input
+        [valor]="clave"
+        label="Clave"
+        placeholder="Clave"
+        tipo="password"
+        icono="lock"
+        [hint]="hintClave"
+        (cambiaValor)="clave = $event">        
+    </app-form-input>
+
+    <button 
+        mat-button 
+        class="iniciar-sesion-button" 
+        (click)="nuevoInicioSesion()">
+        Iniciar sesión
+    </button>
+
+    <button 
+        mat-button 
+        class="limpiar-button" 
+        (click)="limpiarForm()">
+        Limpiar
+    </button>
+    
+</mat-card>

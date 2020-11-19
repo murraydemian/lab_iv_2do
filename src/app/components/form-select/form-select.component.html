@@ -1,0 +1,21 @@
+<mat-form-field appearance="fill" class="app-form-field">
+    <mat-label>{{label}}</mat-label>
+    <select 
+    matNativeControl 
+    required 
+    [(ngModel)]="valor"
+    (change)="cambiaSeleccion()">
+      <option 
+      *ngFor="let opcion of opciones"
+      [value]="opcion">
+        {{opcion}}
+      </option>      
+    </select>
+    <mat-icon 
+    matSuffix>
+        {{icono}}
+    </mat-icon>
+    <mat-hint>
+        {{hint}}
+    </mat-hint>
+</mat-form-field>

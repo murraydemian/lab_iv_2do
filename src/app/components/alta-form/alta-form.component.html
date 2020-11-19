@@ -1,0 +1,77 @@
+<mat-card class="alta-form">
+
+    <mat-label>Alta de mascotas</mat-label>
+
+    <app-form-select
+    label="Animal"
+    [opciones]="animales"
+    hint=""
+    (nuevoSeleccion)="animal = $event">
+    </app-form-select>
+
+    <app-form-input
+    [(valor)]="raza"
+    label="Raza"
+    placeholder="Raza"
+    tipo="text"
+    icono=""
+    [hint]="hintRaza"
+    (cambiaValor)="raza = $event">
+    </app-form-input>
+
+    <app-form-input
+    [(valor)]="nombre"
+    label="Nombre"
+    placeholder="Nombre"
+    tipo="text"
+    icono=""
+    [hint]="hintNombre"
+    (cambiaValor)="nombre = $event">
+    </app-form-input>
+
+    <app-form-input
+    [(valor)]="edad"
+    label="Edad"
+    placeholder="Edad"
+    tipo="number"
+    icono=""
+    [hint]="hintEdad"
+    (cambiaValor)="edad = $event">
+    </app-form-input>
+
+    <app-form-input
+    [(valor)]="duenio"
+    label="Dueño"
+    placeholder="Dueño"
+    tipo="text"
+    icono=""
+    [hint]="hintDuenio"
+    (cambiaValor)="duenio = $event">
+    </app-form-input>
+
+    <button 
+    *ngIf="modifica"
+    mat-button 
+    class="iniciar-sesion-button" 
+    (click)="enNuevoItem()"
+    style="margin-bottom: 10px;">
+        Modificar
+    </button>
+
+    <button
+    *ngIf="!modifica"
+    mat-button 
+    class="iniciar-sesion-button" 
+    (click)="enNuevoItem()"
+    style="margin-bottom: 10px;">
+        Agregar
+    </button>
+
+    <button 
+    mat-button 
+    class="limpiar-button" 
+    (click)="limpiarForm()">
+        Limpiar
+    </button>
+
+</mat-card>

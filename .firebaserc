@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "modelo-parcial-lab4": {
+      "hosting": {
+        "modeloExamenVeterinaria": [
+          "modelo-parcial-lab4"
+        ]
+      }
+    }
+  }
+}

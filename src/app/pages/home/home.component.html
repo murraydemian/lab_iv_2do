@@ -1,0 +1,22 @@
+<div class="page-container">
+
+    <app-alta-form
+    *ngIf="!mod"
+    [modifica]="false"
+    perfil="Administrador"
+    (nuevoItem)="agregar($event)">
+    </app-alta-form>
+
+    <app-alta-form
+    *ngIf="mod"
+    [modifica]="true"
+    [data]="seleccion"
+    perfil="Administrador"
+    (nuevoItem)="agregar($event)">
+    </app-alta-form>
+
+    <app-listado
+    (onSelect)="selecciona($event)">
+    </app-listado>
+    
+</div>

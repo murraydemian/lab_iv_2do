@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 400px;
+
+    mat-label{
+        font-size: 20px;
+        padding: 5px;
+        font-weight: 700;
+    }
+
+    .registro-button{
+        color: mat-color($mat-grey, 900);
+        background-color: mat-color($mat-yellow, 100);
+        margin-bottom: 15px;
+    }
+
+    .limpiar-button{
+        background-color: mat-color($mat-red, 'A200');
+    }
+}

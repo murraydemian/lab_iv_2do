@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+.registro-container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}

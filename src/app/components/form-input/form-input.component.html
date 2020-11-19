@@ -1,0 +1,6 @@
+<mat-form-field appearance="fill" class="form-field">
+  <mat-label>{{label}}</mat-label>
+  <input matInput placeholder="{{placeholder}}" type="{{tipo}}" [(ngModel)]="valor" (change)="enCambiaValor()">
+  <mat-icon matSuffix>{{icono}}</mat-icon>
+  <mat-hint>{{hint}}</mat-hint>
+</mat-form-field>

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~@angular/material/theming';
+.iniciar-sesion-button{
+    color: mat-color($mat-grey, 900);
+    background-color: mat-color($mat-yellow, 100);
+    margin-bottom: 15px;
+}
+
+.limpiar-button{
+    background-color: mat-color($mat-red, 'A200');
+}
