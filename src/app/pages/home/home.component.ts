@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   public seleccionAlumno: any = null;
   public mod: boolean = false;
   public administrador: boolean = false;
+  public alumno: boolean = false;
+  public correo: string = null;
 
   constructor(
     private fire: AngularFirestore,
@@ -22,10 +24,14 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.auth.user.subscribe(userData => {
+      this.correo = userData.email;
+    })
     this.auth.user.subscribe( data => {
       if(data != null){
         this.sesion.perfil(data.email).then( perfil => {
           this.administrador = perfil == "Administrador";
+          this.alumno = perfil == "Alumno";
         })
       }
     })

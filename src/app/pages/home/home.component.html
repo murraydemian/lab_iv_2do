@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container" *ngIf="administrador">
 
     <app-registro [center]="false">
     </app-registro>
@@ -34,4 +34,20 @@
     (onSelect)="seleccionaAlumno($event)">
     </app-listado>
     
+</div>
+<div class="page-container" *ngIf="alumno">
+    <app-listado
+    (onSelect)="selecciona($event)">
+    </app-listado>
+    <app-listado
+    [alumno]="correo"
+    tipo="alumnos"
+    (onSelect)="seleccionaAlumno($event)">
+    </app-listado>
+    <app-asigna
+    [alumno]="seleccionAlumno"
+    [materia]="seleccion"
+    (nuevoAsignado)="asignado($event)"
+    *ngIf="seleccion != null || seleccionAlumno != null">
+    </app-asigna>
 </div>

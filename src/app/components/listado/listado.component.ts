@@ -11,6 +11,7 @@ export class ListadoComponent implements OnInit {
 
   @Output() onSelect = new EventEmitter<any>();
   @Input() tipo: string = "materias";
+  @Input() alumno: string = null;
 
   public items: Array<any>;
   public seleccionado: any;
@@ -24,7 +25,11 @@ export class ListadoComponent implements OnInit {
     if(this.tipo == "materias"){
       this.traerMaterias();
     } else if( this.tipo == "alumnos"){
-      this.traerAlumnos();
+      if(this.alumno != null){
+        this.traerAlumnos(this.alumno);
+      } else {
+        this.traerAlumnos();
+      }
     }
   }
 
@@ -44,14 +49,22 @@ export class ListadoComponent implements OnInit {
       this.spinner.deactivate();
     });
   }
-  traerAlumnos(){
+  traerAlumnos(correo: string = null){
     this.fire.collection('usuarios', ref => ref.where('perfil', '==', 'Alumno')).snapshotChanges()
     .subscribe( data => {
       this.items = [];
-      data.forEach( (item) => {
-        let temp: any = item.payload.doc.data();
-        temp.docid = item.payload.doc.id;
-        this.items.push(temp);
+      data.forEach( (item: any) => {
+        if(correo != null){
+          if(item.payload.doc.data().correo == correo){
+            let temp: any = item.payload.doc.data();
+            temp.docid = item.payload.doc.id;
+            this.items.push(temp);
+          }
+        } else {
+          let temp: any = item.payload.doc.data();
+          temp.docid = item.payload.doc.id;
+          this.items.push(temp);
+        }
       });
       this.spinner.deactivate();
     });
