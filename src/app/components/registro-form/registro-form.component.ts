@@ -11,6 +11,7 @@ export class RegistroFormComponent implements OnInit {
   @Input() hintCorreo: string;
   @Input() hintClave: string;
   @Input() hintTipo: string;
+  @Input() administrador: boolean = false;
 
   public correo: string = '';
   public clave: string = '';
@@ -30,7 +31,7 @@ export class RegistroFormComponent implements OnInit {
     let item = {
       correo: this.correo,
       clave: this.clave,
-      tipo: this.tipo,
+      tipo: this.administrador ? 'Administrador' : '',
     }
     this.nuevoRegistro.emit(item);
   }

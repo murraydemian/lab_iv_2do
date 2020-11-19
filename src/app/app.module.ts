@@ -45,6 +45,8 @@ import { AltaFormComponent } from './components/alta-form/alta-form.component';
 import { FormSelectComponent } from './components/form-select/form-select.component';
 import { ListadoComponent } from './components/listado/listado.component';
 import { ItemListadoComponent } from './components/listado/item-listado/item-listado.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { AsignaComponent } from './components/asigna/asigna.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { ItemListadoComponent } from './components/listado/item-listado/item-lis
     AltaFormComponent,
     FormSelectComponent,
     ListadoComponent,
-    ItemListadoComponent
+    ItemListadoComponent,
+    SpinnerComponent,
+    AsignaComponent
   ],
   imports: [
     BrowserModule,

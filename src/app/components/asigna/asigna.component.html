@@ -1,0 +1,23 @@
+
+<mat-card *ngIf="this.materia != null || this.alumno != null">
+    <app-item-listado
+    *ngIf="materia != null"
+    [data]="materia"
+    tipo="materias">
+    </app-item-listado>
+
+    <app-item-listado
+    *ngIf="alumno != null"
+    [data]="alumno"
+    tipo="alumnos">
+    </app-item-listado>
+
+    <button
+    *ngIf="this.materia != null && this.alumno != null"
+    mat-button 
+    class="iniciar-sesion-button" 
+    (click)="asignar()"
+    style="margin-bottom: 10px;">
+        Asignar
+    </button>
+</mat-card>

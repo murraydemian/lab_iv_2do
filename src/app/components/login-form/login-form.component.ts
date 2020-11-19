@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +16,9 @@ export class LoginFormComponent implements OnInit {
   public clave: string;
   public tipo: "Administrador" | "Cliente";
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -25,13 +28,23 @@ export class LoginFormComponent implements OnInit {
     this.clave = '';
   }
 
-  nuevoInicioSesion(){
+  nuevoInicioSesion(){    
     let item: any = {
       correo: this.correo,
       clave: this.clave,
       tipo: this.tipo,
     }
     this.nuevoRegistro.emit(item);
+  }
+
+  inicioRapido(){
+    this.correo = "murraydemian@gmail.com";
+    this.clave = "123456";
+    this.nuevoInicioSesion();
+  }
+
+  registro(){
+    this.router.navigate(['registro']);
   }
 
 }

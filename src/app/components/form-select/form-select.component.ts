@@ -19,8 +19,9 @@ export class FormSelectComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   cambiaSeleccion(){
+    //console.log(this.valor);
     this.nuevoSeleccion.emit(this.valor);
   }
 

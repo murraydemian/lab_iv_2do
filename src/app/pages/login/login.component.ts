@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { SesionService } from '../../services/sesion.service';
 
 @Component({
@@ -15,19 +16,25 @@ export class LoginComponent implements OnInit {
   constructor(
     private sesion: SesionService,
     private router: Router,
+    private spinner: SpinnerService,
   ) { }
 
   ngOnInit(): void {
   }
 
   iniciarSesion(e: any){
+    this.spinner.activate();
     this.sesion.iniciar(e.correo, e.clave)
     .then( (response: any) => {
       if(response.ok){
-        this.router.navigate(['']);
+        setTimeout(() => {
+          this.router.navigate(['']);
+          this.spinner.deactivate();
+        }, 500)
       } else {
         this.hintCorreo = response.mensajeCorreo;
         this.hintClave = response.mensajeClave;
+        this.spinner.deactivate();
       }
     });
   }

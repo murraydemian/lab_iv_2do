@@ -1,6 +1,7 @@
 <mat-card class="login-form">
 
-    <mat-label>Alta de usuarios</mat-label>
+    <mat-label *ngIf="!administrador">Alta de usuarios</mat-label>
+    <mat-label *ngIf="administrador">Alta de administradores</mat-label>
 
     <app-form-input
         [valor]="correo"
@@ -22,11 +23,11 @@
         (cambiaValor)="clave = $event">        
     </app-form-input>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="!administrador">
       <mat-label>Tipo</mat-label>
       <select matNativeControl required [(ngModel)]="tipo">
-        <option value="Administrador">Administrador</option>
-        <option value="Cliente">Cliente</option>
+        <option value="Alumno">Alumno</option>
+        <option value="Profesor">Profesor</option>
       </select>
       <mat-icon matSuffix>account_box</mat-icon>
       <mat-hint>{{hintTipo}}</mat-hint>

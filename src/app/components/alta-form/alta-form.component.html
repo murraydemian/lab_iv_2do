@@ -1,23 +1,6 @@
 <mat-card class="alta-form">
 
-    <mat-label>Alta de mascotas</mat-label>
-
-    <app-form-select
-    label="Animal"
-    [opciones]="animales"
-    hint=""
-    (nuevoSeleccion)="animal = $event">
-    </app-form-select>
-
-    <app-form-input
-    [(valor)]="raza"
-    label="Raza"
-    placeholder="Raza"
-    tipo="text"
-    icono=""
-    [hint]="hintRaza"
-    (cambiaValor)="raza = $event">
-    </app-form-input>
+    <mat-label>Alta de materias</mat-label>
 
     <app-form-input
     [(valor)]="nombre"
@@ -29,25 +12,43 @@
     (cambiaValor)="nombre = $event">
     </app-form-input>
 
+
+    <app-form-select
+    label="Cuatrimestre"
+    [opciones]="cuatrimestres"
+    icono=""
+    [hint]="hintCuatrimestre"
+    (nuevoSeleccion)="cuatrimestre = $event">
+    </app-form-select>
+
+  
     <app-form-input
-    [(valor)]="edad"
-    label="Edad"
-    placeholder="Edad"
+    [(valor)]="cupo"
+    label="Cupo"
+    placeholder="Cupo"
     tipo="number"
     icono=""
-    [hint]="hintEdad"
-    (cambiaValor)="edad = $event">
+    [hint]="hintCupo"
+    (cambiaValor)="cupo = $event">
     </app-form-input>
 
     <app-form-input
-    [(valor)]="duenio"
-    label="Dueño"
-    placeholder="Dueño"
+    [(valor)]="anio"
+    label="Año"
+    placeholder="Año"
     tipo="text"
     icono=""
-    [hint]="hintDuenio"
-    (cambiaValor)="duenio = $event">
+    [hint]="hintAnio"
+    (cambiaValor)="anio = $event">
     </app-form-input>
+
+    <app-form-select
+    label="Profesor"
+    [opciones]="profesores"
+    icono=""
+    [hint]="hintProfesor"
+    (nuevoSeleccion)="profesor = $event">
+    </app-form-select>
 
     <button 
     *ngIf="modifica"

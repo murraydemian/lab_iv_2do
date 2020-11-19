@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-alta-form',
@@ -13,45 +14,54 @@ export class AltaFormComponent implements OnInit {
   @Output() nuevoItem = new EventEmitter<any>();
 
 
-  public animales: Array<string> = ['Perro', 'Gato', 'Huron'];
+  public profesores: Array<string> = [];
+  public cuatrimestres: Array<string> = ['Primero', 'Segundo', 'Tercero', 'Cuarto'];
 
-  @Input() animal: string;
-  public hintAnimal: string;
+  @Input() cuatrimestre: string;
+  public hintCuatrimestre: string;
 
-  @Input() raza: string;
-  public hintRaza: string;
+  @Input() anio: string;
+  public hintAnio: string;
 
   @Input() nombre: string;
   public hintNombre: string;
 
-  @Input() edad: number;
-  public hintEdad: string;
+  @Input() cupo: number;
+  public hintCupo: string;
 
-  @Input() duenio: string;
-  public hintDuenio: string;
+  @Input() profesor: string;
+  public hintProfesor: string;
 
-  public foto: any;
 
-  constructor() { }
+  constructor(
+    private fire: AngularFirestore
+  ) { }
 
   ngOnInit(): void {
     if(this.data != null){
-      this.animal = this.data.animal;
-      this.raza = this.data.raza;
       this.nombre = this.data.nombre;
-      this.edad = this.data.edad;
-      this.duenio = this.data.duenio;
+      this.cuatrimestre = this.data.cuatrimestre;
+      this.cupo = this.data.cupo;
+      this.profesor = this.data.profesor;
+      this.anio = this.data.anio;
     }
+    this.fire.collection('usuarios', ref => ref.where('perfil', '==', 'Profesor'))
+    .valueChanges().subscribe( userList => {
+      this.profesores = [];
+      userList.forEach( (item: any) => {
+        this.profesores.push( item.correo );
+      });
+    });
   }
 
   enNuevoItem(){
     if(this.verificarInputs()){
       let item: any = {
-        animal: this.animal,
-        raza: this.raza,
         nombre: this.nombre,
-        edad: this.edad,
-        duenio: this.duenio,
+        cuatrimestre: this.cuatrimestre,
+        cupo: this.cupo,
+        profesor: this.profesor,
+        anio: this.anio,
       };
       this.limpiarForm();
       this.nuevoItem.emit(item);
@@ -59,21 +69,22 @@ export class AltaFormComponent implements OnInit {
   }
 
   limpiarForm(){
-    this.animal = "";
-    this.raza = "";
     this.nombre = "";
-    this.edad = 0;
-    this.duenio = "";
+    this.cuatrimestre = "";
+    this.anio = "";
+    this.cupo = 0;
+    this.profesor = "";
   }
 
   verificarInputs(){
-    this.hintAnimal, this.hintDuenio, this.hintEdad, this.hintNombre, this.hintRaza = "";
+    this.hintNombre, this.hintCuatrimestre, this.hintCupo, this.hintAnio, this.hintProfesor = "";
     let ok = true;
-    if(!this.animales.includes(this.animal)){ok = false; this.hintAnimal = "Seleccione una especie"}
-    if(this.raza == ""){ok = false; this.hintRaza = "Raza invalida"}
+    //console.log(this.profesor, this.cuatrimestre);
+    if(!this.profesores.includes(this.profesor)){ok = false; this.hintProfesor = "Seleccione un profesor"}
+    if(!this.cuatrimestres.includes(this.cuatrimestre)){ok = false; this.hintCuatrimestre = "Seleccione cuatrimestre"}
     if(this.nombre == ""){ok = false; this.hintNombre = "Nombre invalido"}
-    if(this.edad < 0){ok = false; this.hintNombre = "Nombre invalido"}
-    if(this.duenio == ""){ok = false; this.hintDuenio = "Correo invalido"}
+    if(this.cupo < 0){ok = false; this.hintCupo = "Cupo invalido"}
+    if(this.anio == ""){ok = false; this.hintAnio = "Año invalido"}
     return ok;
   }
 

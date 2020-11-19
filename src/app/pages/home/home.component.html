@@ -1,22 +1,37 @@
 <div class="page-container">
 
+    <app-registro [center]="false">
+    </app-registro>
+
+    <app-asigna
+    [alumno]="seleccionAlumno"
+    [materia]="seleccion"
+    (nuevoAsignado)="asignado($event)"
+    *ngIf="seleccion != null || seleccionAlumno != null">
+    </app-asigna>
+
     <app-alta-form
-    *ngIf="!mod"
+    *ngIf="!(seleccion != null || seleccionAlumno != null)"
     [modifica]="false"
     perfil="Administrador"
     (nuevoItem)="agregar($event)">
     </app-alta-form>
 
-    <app-alta-form
-    *ngIf="mod"
+    <!--app-alta-form
+    *ngIf="(seleccion == null || seleccionAlumno == null)"
     [modifica]="true"
     [data]="seleccion"
     perfil="Administrador"
     (nuevoItem)="agregar($event)">
-    </app-alta-form>
+    </app-alta-form-->
 
     <app-listado
     (onSelect)="selecciona($event)">
+    </app-listado>
+
+    <app-listado
+    tipo="alumnos"
+    (onSelect)="seleccionaAlumno($event)">
     </app-listado>
     
 </div>

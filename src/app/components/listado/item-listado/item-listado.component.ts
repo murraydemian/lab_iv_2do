@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ItemListadoComponent implements OnInit {
 
   @Input() data: any;
+  @Input() tipo: string = "materias";
   @Output() onSelect = new EventEmitter<any>();
 
   constructor() { }

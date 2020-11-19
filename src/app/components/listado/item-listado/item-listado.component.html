@@ -1,9 +1,18 @@
 <div 
 class="item-div"
-(click)="elegir()">
+(click)="elegir()"
+*ngIf="tipo == 'materias'">
     <mat-label>{{data.nombre}}</mat-label>
-    <p>{{data.animal}}</p>
-    <p>{{data.edad}} año/s</p>
-    <p>{{data.raza}}</p>
-    <p>{{data.duenio}}</p>
+    <p>Cupo: {{data.cupo}}</p>
+    <p>Año: {{data.anio}}</p>
+    <p>Cuatrimestre: {{data.cuatrimestre}}</p>
+    <p>Profesor: {{data.profesor}}</p>
+    <mat-label>Alumnos</mat-label>
+    <p *ngFor="let al of data.alumnos">{{al}}</p>
+</div>
+<div
+class="item-div"
+(click)="elegir()"
+*ngIf="tipo == 'alumnos'">
+    <mat-label>{{data.correo}}</mat-label>
 </div>

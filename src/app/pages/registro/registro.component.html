@@ -1,4 +1,4 @@
-<div class="registro-container">
+<div class="registro-container" *ngIf="center">
 
     <app-registro-form
         [hintCorreo]="hintCorreo"
@@ -8,3 +8,12 @@
     </app-registro-form>
 
 </div>
+
+<app-registro-form
+    *ngIf="!center"
+    [administrador]="true"
+    [hintCorreo]="hintCorreo"
+    [hintClave]="hintClave"
+    [hintTipo]="hintTipo"
+    (nuevoRegistro)="registrar($event)">        
+</app-registro-form>

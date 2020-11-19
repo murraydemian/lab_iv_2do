@@ -73,6 +73,19 @@ export class SesionService {
     });
   }
 
+  perfil(correo: string){
+    return new Promise( (resolve) => {
+      this.fire.collection('usuarios', ref => ref.where('correo', '==', correo))
+      .get().subscribe( userList => {
+        if(userList.docs.length > 0){
+          resolve((<any>userList.docs[0].data()).perfil);
+        }else{
+          resolve(null);
+        }
+      });
+    });
+  }
+
   private parsearResponse(response){
     let respuestaItem: any = {
       ok: true,

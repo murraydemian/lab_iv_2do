@@ -3,6 +3,7 @@ class="listado">
     <app-item-listado
     *ngFor="let item of items"
     [data]="item"
+    [tipo]="tipo"
     (onSelect)="selecciona($event)">
     </app-item-listado>
 </mat-card>
